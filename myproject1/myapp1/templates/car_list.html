@@ -2,25 +2,17 @@
 
 {% block content %}
 <ul>
-    {% if cars|length < 3 %}
 
         {% for car in cars %}
         <li style="color: red">
-            {{car.brand}}
-            {{car.year}}
+            {{car.brand.name}}
+            {{car.title}}
+            {{car.brand.country}}
             {{car.type}}
             {{car.color}}
         </li>
         {% endfor %}
-    {% elif cars|length >= 3 %}
-        {% for car in cars %}
-            <li style="color: red">
-                Brand: {{car.brand}}
-                <br>
-                Year: {{car.year}}
-            </li>
-            {% endfor %}
-    {% endif %}
+
 </ul>
 <!--{{cars.0.brand}}-->
 {% endblock %}
