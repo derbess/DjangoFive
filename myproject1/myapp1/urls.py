@@ -1,8 +1,9 @@
 from django.urls import path
 from .views.views import sayHello, sayH1, car_list, get_brands, get_brands_by_country, get_vehicle_by_brand, \
-    get_vehicle_by_brands, get_vehicle_by_brand_after, get_vehicle_by_name_start, get_vehicle_by_country
+    get_vehicle_by_brands, get_vehicle_by_brand_after, get_vehicle_by_name_start, get_vehicle_by_country, \
+    addVehicle
 
-from .views.cbv import BrandListView
+from .views.cbv import Vehicle
 
 
 urlpatterns = [
@@ -17,6 +18,7 @@ urlpatterns = [
     path('cars/like', get_vehicle_by_name_start),
     path('cars/country', get_vehicle_by_country),
 
-    path('cbv/brands', BrandListView.as_view())
+    path('cbv/vehicle', Vehicle.as_view(), name='add_page'),
+    path('create/vehicle', addVehicle, name='add_page')
 
 ]

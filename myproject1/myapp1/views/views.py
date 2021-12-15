@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from myapp1.models import Brand, Vehicle
 import json
+from myapp1.forms import AddVehicleForm
 
 # Create your views here.
 
@@ -97,3 +98,19 @@ def get_vehicle_by_country(request):
             "title": "Вторая страница",
             "cars": cars
         })
+
+def addVehicle(request):
+    if request.method == 'POST':
+        form = AddVehicleForm(request.POST)
+        print(form)
+        if form.is_valid():
+            try:
+                print(form.cleaned_data)
+                # Vehicle.objects.create(**form.cleaned_data)
+                form.save()
+                return redirect('add_page')
+            except:
+                form.add_error(None, "Ошибка добавления")
+    else:
+        form = AddVehicleForm()
+    return render(request, 'addVehicle.html', {'form': form})
