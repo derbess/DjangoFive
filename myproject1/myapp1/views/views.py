@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from .models import Car, Brand, Vehicle
+from myapp1.models import Brand, Vehicle
 import json
 
 # Create your views here.
@@ -63,6 +63,37 @@ def get_vehicle_by_brands(request):
         })
 
 # все машины после 2000
-# все машины сортировать по году
+def get_vehicle_by_brand_after(request):
+    cars = []
+    cars = Vehicle.objects.filter(year__gt=2000)
+    return render(request, 'car_list.html', {
+        "title": "Вторая страница",
+        "cars": cars
+    })
+
+
 # все брэнды которые начинаются на "L"
+def get_vehicle_by_name_start(request):
+    cars = []
+    brands = Brand.objects.filter(name__startswith="L")
+    return render(request, 'brand_list.html', {
+        "title": "Вторая страница",
+        "brands": brands
+    })
+
+# все машины сортировать по году
+
+
+
 # все машины из Германии
+def get_vehicle_by_country(request):
+    cars = []
+    brands = Brand.objects.filter(country__in=['Germany'])
+    for brand in brands:
+        for car in brand.get_vehicles.all():
+            cars.append(car)
+    print(cars)
+    return render(request, 'car_list.html', {
+            "title": "Вторая страница",
+            "cars": cars
+        })
