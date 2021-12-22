@@ -1,3 +1,4 @@
+from django.forms import model_to_dict
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from myapp1.models import Brand, Vehicle
@@ -102,7 +103,7 @@ def get_vehicle_by_country(request):
 def addVehicle(request):
     if request.method == 'POST':
         form = AddVehicleForm(request.POST)
-        print(form)
+        # print(form)
         if form.is_valid():
             try:
                 print(form.cleaned_data)
@@ -114,3 +115,35 @@ def addVehicle(request):
     else:
         form = AddVehicleForm()
     return render(request, 'addVehicle.html', {'form': form})
+
+def deleteVehicle(request, pk):
+    try:
+        vehicle = Vehicle.objects.get(id = pk)
+        print(vehicle)
+        vehicle.delete()
+    except:
+        print("Error")
+
+def getVehicleById(request, pk):
+    form = None
+    try:
+        vehicle = Vehicle.objects.get(id=pk)
+        form = AddVehicleForm(initial=model_to_dict(vehicle))
+        return render(request, 'addVehicle.html', {'form': form})
+        print(vehicle)
+
+    except:
+        print("Error")
+
+#не работает
+def updateVehicle(request, pk):
+    if request.method == "GET":
+        vehicle = Vehicle.objects.get(id=pk)
+        form = AddVehicleForm(initial=model_to_dict(vehicle))
+        return render(request, 'updateVehicle.html', {'form': form, 'pk': pk})
+    elif request.method == "POST":
+        vehicle = Vehicle.objects.get(id=pk)
+        form = AddVehicleForm(request.POST, instance=vehicle)
+        if form.is_valid():
+            form.save()
+        return redirect('update_page')

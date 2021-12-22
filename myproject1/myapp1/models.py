@@ -27,4 +27,4 @@ class Vehicle(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name="get_vehicles")
 
     def __str__(self):
-        return f'{self.title, self.year}'
+        return f'{self.title, self.year, self.color, self.type}'
