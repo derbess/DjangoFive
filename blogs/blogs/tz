@@ -1,0 +1,26 @@
+User:
+    -email
+    -password
+    -fullname
+
+Category:
+    -name
+
+Article:
+    -title
+    -category_id
+    -image
+    -content
+    -creation_date(dd.mm.yyyy)
+    -view(auto)
+    -author_id
+
+Comment:
+    -author_id
+    -article_id
+    -description
+
+
+
+
+
