@@ -8,4 +8,4 @@ class CreateArticle(forms.ModelForm):
     class Meta:
         model = Article
         # fields = '__all__'
-        fields = ("title", "content", "category_id", "image")
+        fields = ("title", "content", "category_id", "image", "author_id")

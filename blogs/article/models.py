@@ -14,6 +14,8 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = "Categories"
 
+
+
 class Article(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -22,3 +24,4 @@ class Article(models.Model):
     image = models.TextField(default=None)
     author_id = models.ForeignKey(User, on_delete=models.CASCADE)
     view = models.IntegerField(default=0)
+

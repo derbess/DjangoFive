@@ -7,7 +7,7 @@ from .forms import CreateArticle
 def get_list_categories(request):
     categories = Category.objects.all()
     print(categories)
-    return render(request, 'categories-list.html', {"categories": categories})
+    return render(request, 'comment-list.html', {"categories": categories})
 
 def get_list_articles(request):
     articles = Article.objects.all()
@@ -34,6 +34,7 @@ def create_article(request):
                 form.save()
                 return redirect('add_article')
             except:
+                print(form)
                 form.add_error(None, "Ошибка добавления")
     else:
         form = CreateArticle()
