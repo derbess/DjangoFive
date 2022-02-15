@@ -1,15 +1,25 @@
 from rest_framework import serializers
-from .models import Brand
+from .models import Brand, Vehicle
 
-class BrandSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=255)
-    country = serializers.CharField()
+class BrandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Brand
+        fields = '__all__'
 
-    def create(self, validated_data):
-        return Brand.objects.create(**validated_data)
+class VehicleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vehicle
+        fields = '__all__'
 
-    def update(self, instance, validated_data):
-        instance.name = validated_data.get('name')
-        instance.country = validated_data.get('country')
-        instance.save()
-        return instance
+# class BrandSerializer(serializers.Serializer):
+#     name = serializers.CharField(max_length=255)
+#     country = serializers.CharField()
+#
+#     def create(self, validated_data):
+#         return Brand.objects.create(**validated_data)
+#
+#     def update(self, instance, validated_data):
+#         instance.name = validated_data.get('name')
+#         instance.country = validated_data.get('country')
+#         instance.save()
+#         return instance
