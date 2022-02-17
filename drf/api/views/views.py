@@ -4,8 +4,8 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import Brand, Vehicle
-from .serializers import BrandSerializer, VehicleSerializer
+from api.models import Brand, Vehicle
+from api.serializers import BrandSerializer, VehicleSerializer
 # Create your views here.
 
 
@@ -18,6 +18,7 @@ class BrandDetailUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
 
+
 class VehicleListCreateAPIView(generics.ListCreateAPIView):
     queryset = Vehicle.objects.all()
     serializer_class = VehicleSerializer
@@ -26,6 +27,7 @@ class VehicleListCreateAPIView(generics.ListCreateAPIView):
 class VehicleDetailUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Vehicle.objects.all()
     serializer_class = VehicleSerializer
+
 
 class VehicleListAPIView(generics.ListAPIView):
     serializer_class = VehicleSerializer
