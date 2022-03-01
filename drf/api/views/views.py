@@ -1,6 +1,7 @@
 from django.forms import model_to_dict
 from django.shortcuts import render
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -17,6 +18,7 @@ class BrandListCreateAPIView(generics.ListCreateAPIView):
 class BrandDetailUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
+    permission_classes = (IsAuthenticated,)
 
 
 class VehicleListCreateAPIView(generics.ListCreateAPIView):
