@@ -11,3 +11,10 @@ class CategoryAPIViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    
+
+class ProductAPIViewset(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    serializer_class = ProductSerializer
