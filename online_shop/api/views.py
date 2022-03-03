@@ -9,12 +9,25 @@ from .serializers import *
 
 class CategoryAPIViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+
+    def get_serializer_class(self):
+        return CategorySerializer
+
+    def get_queryset(self):
+        # if(self.kwargs.get('pk')):
+        #     return
+
+        return Category.objects.all()
     
 
 class ProductAPIViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    serializer_class = ProductSerializer
+
+    def get_serializer_class(self):
+        if (self.kwargs.get('pk')):
+            return ProductSerializer
+        return ProductShortSerializer
+
+    def get_queryset(self):
+        return Product.objects.all()
+

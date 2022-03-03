@@ -8,7 +8,13 @@ class CategorySerializer(ModelSerializer):
         fields = '__all__'
 
 
-class ProductSerializer(ModelSerializer):
+class ProductShortSerializer(ModelSerializer):
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ('id', 'title', 'price', 'articule', 'currency', 'count', 'description')
+
+
+class ProductSerializer(ProductShortSerializer):
+    category = CategorySerializer(read_only=True)
+    class Meta(ProductShortSerializer.Meta):
+        fields = ProductShortSerializer.Meta.fields + ('category',)

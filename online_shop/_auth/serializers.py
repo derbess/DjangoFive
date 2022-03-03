@@ -1,11 +1,12 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-
-class UserSerializer(serializers.Serializer):
+class UserShortSerializer(serializers.Serializer):
     email = serializers.CharField()
-    password = serializers.CharField()
     username = serializers.CharField()
+
+class UserSerializer(UserShortSerializer):
+    password = serializers.CharField()
     is_staff = serializers.BooleanField(default= False)
 
     def create(self, validated_data):
