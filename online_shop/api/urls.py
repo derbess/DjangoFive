@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from api.views import CategoryAPIViewset, ProductAPIViewset
+from api.views import CategoryAPIViewset, ProductAPIViewset, ProductAdd
 
 router = routers.DefaultRouter()
 router.register(r'category', CategoryAPIViewset, basename='category')

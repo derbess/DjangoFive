@@ -4,7 +4,7 @@ from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
 
 from basket.models import Basket, BasketProduct
-from basket.serializers import BasketSerializer, BasketProductSerializer
+from basket.serializers import BasketSerializer, BasketProductSerializer, BasketProductCreateSerializer
 
 
 class BasketAPIViewset(viewsets.ModelViewSet):
@@ -17,6 +17,12 @@ class BasketProductAPIViewset(viewsets.ModelViewSet):
     serializer_class = BasketProductSerializer
 
     def get_queryset(self):
-        if(self.request.user.is_staff == True):
-            return BasketProduct.objects.all()
-        return BasketProduct.objects.filter(basket_id = 1 )
+        # if(self.request.user.is_staff == True):
+        return BasketProduct.objects.all()
+
+class BasketProductAdd(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+
+    def get_serializer_class(self):
+        return BasketProductCreateSerializer
+

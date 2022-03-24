@@ -18,3 +18,8 @@ class BasketProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = BasketProduct
         fields = ('basket_id', 'product_id')
+
+class BasketProductCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BasketProduct
+        fields = '__all__'
