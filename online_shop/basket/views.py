@@ -26,3 +26,5 @@ class BasketProductAdd(viewsets.ModelViewSet):
     def get_serializer_class(self):
         return BasketProductCreateSerializer
 
+
+fsdkl
