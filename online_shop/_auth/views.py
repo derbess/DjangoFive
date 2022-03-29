@@ -5,6 +5,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny, IsAuthenticated
 from .models import *
 from .serializers import *
+from django.contrib.auth.models import User
 
 
 class UserCreateAPIView(generics.CreateAPIView):
