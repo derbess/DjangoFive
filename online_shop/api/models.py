@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 
@@ -24,6 +24,12 @@ class Product(models.Model):
     count = models.IntegerField()
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+
+class Rating(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    grade = models.FloatField()
 
 
 
