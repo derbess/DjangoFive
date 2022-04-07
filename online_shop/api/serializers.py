@@ -14,12 +14,17 @@ class ProductCreateSerializer(ModelSerializer):
         model = Product
         fields = '__all__'
 
+class CommentSerializer(ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = '__all__'
+
 
 
 class ProductShortSerializer(ModelSerializer):
     class Meta:
         model = Product
-        fields = ('id', 'title', 'price', 'articule', 'currency', 'count', 'description')
+        fields = ('id', 'title', 'price', 'articule', 'currency', 'count', 'description', 'ratingg')
 
 
 class ProductSerializer(ProductShortSerializer):
@@ -27,10 +32,9 @@ class ProductSerializer(ProductShortSerializer):
     class Meta(ProductShortSerializer.Meta):
         fields = ProductShortSerializer.Meta.fields + ('category',)
 
-class ProductRatingSerializer(ProductShortSerializer):
-    rating = serializers.FloatField(write_only=True)
-    class Meta(ProductShortSerializer.Meta):
-        fields = ProductShortSerializer.Meta.fields + ('rating', )
+# class ProductRatingSerializer(ProductShortSerializer):
+#     class Meta(ProductShortSerializer.Meta):
+#         fields = ProductShortSerializer.Meta.fields + ('ratingg', )
 
 
 

@@ -24,6 +24,7 @@ class Product(models.Model):
     count = models.IntegerField()
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    ratingg = models.FloatField()
 
 
 class Rating(models.Model):
@@ -31,5 +32,12 @@ class Rating(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     grade = models.FloatField()
 
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    value = models.CharField(max_length=200)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    parent = models.ForeignKey("Comment", on_delete=models.CASCADE, null=True)
 
 
